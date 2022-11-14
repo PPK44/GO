@@ -1,0 +1,34 @@
+go list -f '{{.Target}}'
+
+go env -w GOBIN=C:\path\to\your\bin
+
+go install
+
+go run .
+
+go test -v 
+
+go test
+
+Enable dependency tracking for the code you're about to write.
+To enable dependency tracking for your code, run the go mod init command, giving it the name of the module your code will be in.
+
+For the purposes of this tutorial, use example.com/hello for the module path.
+
+$ go mod init example.com/hello
+go: creating new go.mod: module example.com/hello
+
+
+From the command prompt in the hello directory, run the go mod tidy command to synchronize the example.com/hello module's dependencies, adding those required by the code, but not yet tracked in the module.
+$ go mod tidy
+go: found example.com/greetings in example.com/greetings v0.0.0-00010101000000-000000000000
+After the command completes, the example.com/hello module's go.mod file should look like this:
+
+
+The command found the local code in the greetings directory, then added a require directive to specify that example.com/hello requires example.com/greetings. You created this dependency when you imported the greetings package in hello.go.
+
+The number following the module path is a pseudo-version number -- a generated number used in place of a semantic version number (which the module doesn't have yet).
+
+To reference a published module, a go.mod file would typically omit the replace directive and use a require directive with a tagged version number at the end.
+
+require example.com/greetings v1.1.0
