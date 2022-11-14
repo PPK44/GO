@@ -10,6 +10,8 @@ go test -v
 
 go test
 
+go get
+
 Enable dependency tracking for the code you're about to write.
 To enable dependency tracking for your code, run the go mod init command, giving it the name of the module your code will be in.
 
@@ -32,3 +34,9 @@ The number following the module path is a pseudo-version number -- a generated n
 To reference a published module, a go.mod file would typically omit the replace directive and use a require directive with a tagged version number at the end.
 
 require example.com/greetings v1.1.0
+
+
+To remove all downloaded modules, you can pass the -modcache flag to go clean:
+
+$ go clean -modcache
+
